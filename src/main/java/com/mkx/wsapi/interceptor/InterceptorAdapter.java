@@ -7,12 +7,12 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistration
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 @Configuration
-public class AuthenticatorAdapter extends WebMvcConfigurerAdapter {
+public class InterceptorAdapter extends WebMvcConfigurerAdapter {
     @Autowired
     private Environment environment;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //registry.addInterceptor(new AuthenticatorInterceptor()).addPathPatterns("/**");
+        /*
         //注册TestInterceptor拦截器
         InterceptorRegistration registration = registry.addInterceptor(new AuthenticatorInterceptor());
         //所有路径都被拦截
@@ -21,6 +21,10 @@ public class AuthenticatorAdapter extends WebMvcConfigurerAdapter {
         String[] exclude_path = environment.getProperty("server.ignore_uri").split(",");
         //添加不拦截路径
         registration.excludePathPatterns(exclude_path);
+        */
+        //上面代码的简写形式
+        //添加登录认证
+        registry.addInterceptor(new AuthenticatorInterceptor()).addPathPatterns("/**").excludePathPatterns(environment.getProperty("server.ignore_uri").split(","));
         super.addInterceptors(registry);
     }
 }
