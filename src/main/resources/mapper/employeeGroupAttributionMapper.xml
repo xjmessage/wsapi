@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.mkx.mapper.EmployeeGroupAttributionMapper">
+    <resultMap id="BaseResultMap" type="com.mkx.wsapi.entity.EmployeeGroupAttribution" >
+        <id column="unique_id" property="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result column="group_no" property="group_no" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result column="login_name" property="login_name" jdbcType="NVARCHAR" javaType="java.lang.String"/>
+        <result column="modify_datetime" property="modify_datetime" jdbcType="DATE" javaType="java.util.Date"/>
+        <result column="modify_user" property="modify_user" jdbcType="NVARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.mkx.wsapi.entity.EmployeeGroupAttribution" useGeneratedKeys="true">
+        INSERT INTO `mkx`.`employee_group_attribution`(`group_no`,`login_name`,`modify_datetime`,`modify_user`) VALUES(${group_no},'${login_name}',#{modify_datetime, jdbcType=DATE},'${modify_user}')
+    </insert>
+    <select id="selectGroupNoByLoginName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT `mkx`.`employee_group_attribution`.`group_no` FROM `mkx`.`employee_group_attribution` where `mkx`.`employee_group_attribution`.`login_name`='${login_name}'
+    </select>
+</mapper>

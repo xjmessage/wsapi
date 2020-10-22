@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--日期格式-->
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd" />
+    </bean>
+
+    <!--配置-->
+    <!--加密-->
+    <bean id="encryption" class="com.mkx.wsapi.tool.Encryption"/>
+    <!--数据库连接管理-->
+    <bean id="mybatisConfiguration" class="com.mkx.wsapi.configuration.MybatisConfiguration"></bean>
+    <!--Redis访问-->
+    <bean id="redisCacheAutoConfiguration" class="com.mkx.wsapi.configuration.RedisCacheAutoConfiguration"></bean>
+
+</beans>
